@@ -3,7 +3,7 @@ from opencompass.openicl.icl_prompt_template import PromptTemplate
 from opencompass.openicl.icl_retriever import ZeroRetriever
 from opencompass.openicl.icl_inferencer import GenInferencer
 from opencompass.datasets.summarybench import VCSumDataset
-from opencompass.openicl.icl_evaluator import JiebaRougeEvaluator
+from opencompass.openicl.icl_evaluator import JiebaRougeEvaluator,ChineseRougeEvaluator
 
 
 vcsum_reader_cfg = dict(input_columns=['instruction','input'], output_column='output')
@@ -19,7 +19,7 @@ vcsum_infer_cfg = dict(
 )
 
 vcsum_eval_cfg = dict(
-    evaluator=dict(type=JiebaRougeEvaluator),
+    evaluator=dict(type=ChineseRougeEvaluator),
     pred_role='BOT',
     # pred_postprocessor=dict(type='vcsum'),
 )

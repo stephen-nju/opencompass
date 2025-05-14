@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=6,7 python run.py --hf-type chat --hf-path /home/jovyan/qff/output/lora_test/models/通话摘要_train_Internlm2-7B-base_PiSSA_lora_rank_256/merge --datasets callsum_gen --summarizer summarybench --max-out-len 512 --max-seq-len 2048 --batch-size 1 --hf-num-gpus 1 --tokenizer-kwargs padding_side='right' trust_remote_code=True model_max_length=2048 --max-num-workers 4

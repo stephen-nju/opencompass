@@ -14,4 +14,8 @@ from .icl_misc_evaluator import AveragePPLEvaluator  # noqa
 from .icl_plugin_evaluator import TEvalEvaluator  # noqa
 from .icl_toxic_evaluator import ToxicEvaluator  # noqa
 from .lm_evaluator import LMEvaluator  # noqa
+<<<<<<< HEAD
 from .math_evaluator import MATHEvaluator  # noqa
+=======
+from .icl_jieba_rouge_evaluator import ChineseRougeEvaluator
+>>>>>>> 15b79bbd (add config 0514)

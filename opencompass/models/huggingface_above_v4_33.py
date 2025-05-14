@@ -232,12 +232,14 @@ class HuggingFacewithChatTemplate(BaseModel):
             self.model = AutoModelForCausalLM.from_pretrained(path, **model_kwargs)
         except ValueError:
             self.model = AutoModel.from_pretrained(path, **model_kwargs)
+        # print(f">>>len tokenizer={len(self.tokenizer)}")
 
+        # self.model.resize_token_embeddings(len(self.tokenizer), pad_to_multiple_of=64)
         if peft_path is not None:
             from peft import PeftModel
             peft_kwargs['is_trainable'] = False
             self.model = PeftModel.from_pretrained(self.model, peft_path, **peft_kwargs)
-
+   
         self.model.eval()
         self.model.generation_config.do_sample = False
 
@@ -444,6 +446,7 @@ class HuggingFacewithChatTemplate(BaseModel):
             tokenize_kwargs['add_special_tokens'] = False
             tokens = self.tokenizer.batch_encode_plus(messages, **tokenize_kwargs)
 
+        print(f"messages={messages}")
         tokens = {k: v.to(self.model.device) for k, v in tokens.items()}
 
         if self.mode == 'mid':

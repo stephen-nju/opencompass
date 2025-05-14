@@ -12,12 +12,12 @@ with read_base():
     # from ...Xsum.Xsum_gen import Xsum_datasets
     # from ...lcsts.lcsts_gen import lcsts_datasets
     # from ...FewCLUE_csl.FewCLUE_csl_gen import csl_datasets
-    from ...summarybench.cnewsum.cnewsum_gen import cnewsum_datasets
-    from ...summarybench.csl.csl_gen import csl_datasets
-    from ...summarybench.vcsum.vcsum_gen import vcsum_datasets
-    from ...summarybench.csds.csds_gen import csds_datasets
-    from ...Xsum.Xsum_gen import Xsum_datasets
-    from ...lcsts.lcsts_gen import lcsts_datasets
-
+    # from ...summarybench.cnewsum.cnewsum_gen import cnewsum_datasets
+    # from ...summarybench.csl.csl_gen import csl_datasets
+    # from ...summarybench.vcsum.vcsum_gen import vcsum_datasets
+    # from ...summarybench.csds.csds_gen import csds_datasets
+    # from ...Xsum.Xsum_gen import Xsum_datasets
+    # from ...lcsts.lcsts_gen import lcsts_datasets
+    from ...summarybench.callsum.callsum_gen import callsum_datasets
 
 datasets = sum((v for k, v in locals().items() if k.endswith('_datasets')), [])

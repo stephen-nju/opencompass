@@ -42,3 +42,39 @@ class JiebaRougeEvaluator(BaseEvaluator):
             'rouge2': score['rouge-2']['f'] * 100,
             'rougeL': score['rouge-l']['f'] * 100,
         }
+
+@ICL_EVALUATORS.register_module()
+class ChineseRougeEvaluator(BaseEvaluator):
+    """This Evaluator will first use jieba for tokenization, and then calculate
+    the rouge score.
+
+    This Evaluator especially suitable for evaluating Chinese datasets.
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def score(self, predictions, references):
+        if len(predictions) != len(references):
+            return {
+                'error': 'predictions and references have different '
+                'length'
+            }
+        # predictions = [i for i in predictions]
+        # references = [i for i in references]
+        print(f"preds={predictions}\n====reference={references}")
+        metric = Rouge()
+        predictions = [' '.join(jieba.cut(i)) for i in predictions]
+        references = [' '.join(jieba.cut(i)) for i in references]
+
+        # avoid raising error when empty string encountered
+        predictions = [i if i else '__PREDPLACEHOLDER__' for i in predictions]
+        references = [i if i else '__REFRPLACEHOLDER__' for i in references]
+
+        score = metric.get_scores(predictions, references, avg=True)
+
+        return {
+            'rouge1': score['rouge-1']['f'] * 100,
+            'rouge2': score['rouge-2']['f'] * 100,
+            'rougeL': score['rouge-l']['f'] * 100,
+        }

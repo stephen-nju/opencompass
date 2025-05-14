@@ -22,5 +22,8 @@ summarizer = dict(
         ['vcsum','rouge1'],
         ['vcsum','rouge2'],
         ['vcsum','rougeL'],
+        ['callsum','rouge1'],
+        ['callsum','rouge2'],
+        ['callsum','rougeL']
     ],
 )
